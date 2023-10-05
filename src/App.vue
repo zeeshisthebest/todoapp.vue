@@ -1,12 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app color="indigo" dark>
-      <v-toolbar-title>TO-DO List App</v-toolbar-title>
-    </v-app-bar>
 
-    <v-main>
-
-    </v-main>
+    <router-view></router-view>
   </v-app>
 </template>
 
@@ -15,7 +10,6 @@
 
 export default {
   name: 'App',
-
   components: {
   },
 
