@@ -1,12 +1,12 @@
 <template>
-    <v-card class="px-3 py-5 mx-5 my-10 elevation-5">
-        <v-card-title class="justify-center">TODO's List</v-card-title>
+    <v-card class="px-3 py-5 mt-3 elevation-5">
+        <v-card-subtitle>Total Tasks: {{ totalItem }}</v-card-subtitle>
 
-        <v-list v-if="items.length !== 0" two-line>
+        <v-list v-if="totalItem !== 0" two-line>
             <!-- <v-list-item-group v-model="selected" active-class="indigo--text" multiple> -->
-            <template v-for="(item, index) in items">
+            <template v-for="(item, index) in getItems">
                 <v-hover :key="item.title">
-                    <v-list-item v-on:click="markComp(index)">
+                    <v-list-item v-on:click="markComp(item.id)">
                         <v-btn class="mr-2 elevation-1" small color="grey lighten-3" v-on:click="remove(item.id)">
                             <v-icon color="red darken-4">mdi-trash-can-outline</v-icon>
                         </v-btn>
@@ -30,7 +30,7 @@
                     </v-list-item>
                 </v-hover>
 
-                <v-divider v-if="index < items.length - 1" :key="index"></v-divider>
+                <v-divider v-if="index < totalItem - 1" :key="index"></v-divider>
             </template>
             <!-- </v-list-item-group> -->
         </v-list>
@@ -47,27 +47,28 @@ export default {
         }
     },
     props: {
-        items: {
-            type: Array,
-            required: true
-        }
+        // items: {
+        //     type: Array,
+        //     required: true
+        // }
     },
-
     methods: {
         remove: function (id) {
-            console.log(id);
-            this.items = this.items.filter(e => e.id != id)
+            this.$store.commit('rmvItem', id)
         },
-        markComp: function (index) {
-            console.log(index);
-            console.log(this.items[index].active);
-            this.items[index].active = !this.items[index].active
-        }
+        markComp: function (id) {
+            this.$store.commit('markItem', id)
+        },
+        printAll: function () { console.log(this.$store.getters.items) }
 
     },
-
-    props: {
-        msg: String
+    computed: {
+        totalItem () {
+            return this.$store.getters.totalItems;
+        },
+        getItems () {
+            return this.$store.getters.items;
+        }
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <v-main>
-        <NavBar title="Demo Page"></NavBar>
+        <NavBar title="Demo Detail Page"></NavBar>
     </v-main>
 </template>
 
@@ -8,7 +8,7 @@
 import NavBar from '../components/NavBar'
 
 export default {
-    name: 'DemoView',
+    name: 'DemoDetailView',
     components: {
         NavBar
     },

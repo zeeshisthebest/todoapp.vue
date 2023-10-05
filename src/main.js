@@ -5,11 +5,13 @@ import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
 import vuetify from './plugins/vuetify'
 import Routes from './router'
+import store from './store'
 
-// Vue.use(Vuetify)
+
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
+// Router management
 const router = new VueRouter({
   mode: 'history',
   routes: Routes
@@ -18,6 +20,12 @@ const router = new VueRouter({
 
 new Vue({
   vuetify,
+  store,
   router: router,
-  render: h => h(App)
+  render: h => h(App),
+  computed: {
+    items () {
+      return this.$store.state.items
+    }
+  }
 }).$mount('#app')

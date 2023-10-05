@@ -1,10 +1,9 @@
 <template>
     <v-main>
-        <v-app-bar app color="indigo" dark>
-            <v-toolbar-title>Welcome to TODO App</v-toolbar-title>
-        </v-app-bar>
+        <NavBar title="WELCOME: Manage Tasks"></NavBar>
         <AddNewTodo />
-        <TodoItem v-bind:items="this.items" />
+        <h2 class="text-center text-grey">TODO's List</h2>
+        <TodoItem />
     </v-main>
 </template>
 
@@ -12,23 +11,18 @@
 
 import AddNewTodo from '../components/AddNewTodo'
 import TodoItem from '../components/TodoItem'
+import NavBar from '../components/NavBar'
 
 export default {
     name: 'HomeView',
-
     components: {
         AddNewTodo,
-        TodoItem
+        TodoItem,
+        NavBar
     },
+    data: function () {
+        return {}
 
-    data: () => ({
-        items: [
-            { id: 1, title: 'Title 1', active: false },
-            { id: 2, title: 'Title 2', active: false },
-            { id: 3, title: 'Title 3', active: false },
-            { id: 4, title: 'Title 4', active: false },
-
-        ]
-    }),
+    },
 };
 </script>
