@@ -2,34 +2,33 @@
     <v-card class="px-3 py-5 mx-5 my-10 elevation-5">
         <v-card-title class="justify-center">TODO's List</v-card-title>
 
-        <v-list v-if="items.length !== 0" one-line>
+        <v-list v-if="items.length !== 0" two-line>
             <!-- <v-list-item-group v-model="selected" active-class="indigo--text" multiple> -->
             <template v-for="(item, index) in items">
-                <v-list-item :key="item.title">
-                    <v-btn class="mr-2 elevation-1" small color="grey lighten-3" v-on:click="remove(item.id)">
-                        <v-icon color="red darken-4">mdi-trash-can-outline</v-icon>
-                    </v-btn>
-                    <template>
-                        <v-hover v-slot="{ hover }">
-                            <v-list-item-content v-on:click="markComp(index)" :class="{ 'grey lighten-3': hover }"
-                                class="pl-2" v-on:hover="console.log(' Hovered')">
+                <v-hover :key="item.title">
+                    <v-list-item v-on:click="markComp(index)">
+                        <v-btn class="mr-2 elevation-1" small color="grey lighten-3" v-on:click="remove(item.id)">
+                            <v-icon color="red darken-4">mdi-trash-can-outline</v-icon>
+                        </v-btn>
+                        <template>
+
+                            <v-list-item-content class="pl-2">
                                 <v-list-item-title v-text="item.title"></v-list-item-title>
-                                <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
                             </v-list-item-content>
-                        </v-hover>
 
-                        <v-list-item-action>
+                            <v-list-item-action>
 
-                            <v-icon v-if="!item.active" color="grey lighten-1">
-                                mdi-check-outline
-                            </v-icon>
+                                <v-icon v-if="!item.active" color="grey lighten-1">
+                                    mdi-check-outline
+                                </v-icon>
 
-                            <v-icon large v-else color="green darken-3">
-                                mdi-check-bold
-                            </v-icon>
-                        </v-list-item-action>
-                    </template>
-                </v-list-item>
+                                <v-icon large v-else color="green darken-3">
+                                    mdi-check-bold
+                                </v-icon>
+                            </v-list-item-action>
+                        </template>
+                    </v-list-item>
+                </v-hover>
 
                 <v-divider v-if="index < items.length - 1" :key="index"></v-divider>
             </template>
@@ -44,9 +43,13 @@ export default {
     name: 'TodoItem',
     data () {
         return {
-            items: [
-            ],
-            selected: []
+
+        }
+    },
+    props: {
+        items: {
+            type: Array,
+            required: true
         }
     },
 

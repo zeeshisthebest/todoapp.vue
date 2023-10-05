@@ -1,18 +1,10 @@
 <template>
     <v-main>
         <v-app-bar app color="indigo" dark>
-            <v-toolbar-title>Home View App</v-toolbar-title>
+            <v-toolbar-title>Welcome to TODO App</v-toolbar-title>
         </v-app-bar>
-        <v-card class="px-3 py-5 mx-5 my-10 elevation-5">
-            <v-card-title>Add New Task</v-card-title>
-            <v-card-text>
-                <AddNewTodo></AddNewTodo>
-            </v-card-text>
-            <v-card-actions>
-                <v-btn>Click me</v-btn>
-            </v-card-actions>
-        </v-card>
-        <TodoItem />
+        <AddNewTodo />
+        <TodoItem v-bind:items="this.items" />
     </v-main>
 </template>
 
@@ -30,7 +22,13 @@ export default {
     },
 
     data: () => ({
-        //
+        items: [
+            { id: 1, title: 'Title 1', active: false },
+            { id: 2, title: 'Title 2', active: false },
+            { id: 3, title: 'Title 3', active: false },
+            { id: 4, title: 'Title 4', active: false },
+
+        ]
     }),
 };
 </script>
