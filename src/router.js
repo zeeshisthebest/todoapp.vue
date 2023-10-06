@@ -1,6 +1,6 @@
 import HomeView from './views/Home-View.vue'
 import ArchiveView from './views/Archive-View.vue'
-import DemoDetailView from './views/DemoDetail-View.vue'
+import LoginView from './views/Login-View.vue'
 
 export default [
     {
@@ -15,8 +15,8 @@ export default [
     }
     ,
     {
-        path: '/demo/detail',
-        name: 'DemoDetailView',
-        component: DemoDetailView
+        path: '/login',
+        name: 'LoginView',
+        component: LoginView
     }
 ]

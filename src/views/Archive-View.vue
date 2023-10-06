@@ -1,6 +1,6 @@
 <template>
     <v-main>
-        <NavBar title="Archives| All Completed Tasks"></NavBar>
+        <NavBar title="Archives | All Completed Tasks"></NavBar>
         <ArchivedItems></ArchivedItems>
     </v-main>
 </template>

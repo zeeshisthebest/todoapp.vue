@@ -6,13 +6,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        items: [], //new Map(),
+        items: [],
+        username: "",
     },
     mutations: {
         addItem (state, item) {
             item.id = state.items.length
             console.log(item.id);
-            state.items.push(item)
+            state.items.unshift(item)
         },
         rmvItem (state, id) {
             state.items = state.items.filter(each => each.id !== id)
@@ -32,6 +33,12 @@ export default new Vuex.Store({
         unarchiveItem (state, item) {
             const index = state.items.indexOf(item)
             state.items[index].isarchived = false;
+        },
+        login (state, username) {
+            state.username = username
+        },
+        logout (state) {
+            state.username = ""
         }
     },
 
@@ -40,6 +47,7 @@ export default new Vuex.Store({
     getters: {
         totalItems: state => state.items.length,
         items: state => state.items.filter(e => e.isarchived != true),
-        archivedItems: state => state.items.filter(e => e.isarchived == true)
+        archivedItems: state => state.items.filter(e => e.isarchived == true),
+        username: state => state.username
     },
 });

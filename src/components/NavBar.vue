@@ -8,8 +8,8 @@
         <v-tabs class="py-0">
             <v-spacer />
             <v-tab exact to="/">Home</v-tab>
-            <v-tab exact to="/archives">Archived</v-tab>
-            <v-tab exact to="/demo/detail">Demo detail</v-tab>
+            <v-tab exact to="/archives">Completed</v-tab>
+            <v-tab exact to="/login">Login</v-tab>
             <v-spacer />
         </v-tabs>
 

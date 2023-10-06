@@ -9,6 +9,15 @@
         <v-card-actions class="py-0">
             <v-btn v-on:click='addTask'>Add</v-btn>
         </v-card-actions>
+
+        <v-banner single-line v-if="!isLogged">
+            Please Log In to save
+            <template v-slot:actions>
+                <v-btn text color="deep-purple accent-4" to="/login">
+                    Login
+                </v-btn>
+            </template>
+        </v-banner>
     </v-card>
 </template>
 
@@ -21,6 +30,7 @@ export default {
 
     data: () => ({
         newTaskText: "",
+        isLogged: true,
         lengthRule: [
             v => v.length <= 60 || 'Can not be lengthier than 60 chars',
             v => !!v || 'It is required',
@@ -29,18 +39,31 @@ export default {
     }),
     methods: {
         addTask: async function () {
-            if (this.newTaskText.length > 60 || this.newTaskText.length === 0) return
+            if (this.newTaskText.length > 60 || this.newTaskText.length === 0) {
+                return
+            } else if (this.username.length === 0) {
+                this.isLogged = false
+                return
+            }
+            this.isLogged = true
             //Storing via vuex
             this.$store.commit('addItem', {
                 title: this.newTaskText,
                 active: false,
                 isEditing: false,
-                isarchived: false
+                isarchived: false,
+                author: this.username
             });
             this.newTaskText = ""; //Resseting the field
 
         },
+    },
+    computed: {
+        username () {
+            return this.$store.getters.username
+        }
     }
+
 };
 
 </script>

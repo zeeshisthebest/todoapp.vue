@@ -1,11 +1,11 @@
 <template>
     <v-card class="px-3 py-5 my-3 elevation-5">
-        <v-card-subtitle>Total Tasks: {{ totalItem }}</v-card-subtitle>
-        <v-list v-if="totalItem !== 0" two-line class="py-0">
+        <v-card-subtitle>Total Tasks: {{ getItems.length }}</v-card-subtitle>
+        <v-list v-if="getItems.length !== 0" two-line class="py-0">
             <!-- Each Item -->
-            <template v-for="(item, index) in getItems">
+            <template v-for="(item, index) in  getItems ">
                 <v-hover :key="index">
-                    <v-list-item :class="[item.active ? 'light-green lighten-2' : 'blue lighten-5']">
+                    <v-list-item :class="[item.active ? 'light-green lighten-4' : 'blue lighten-5']">
                         <!-- Delete Button -->
                         <v-btn class="mr-2 elevation-1" small v-on:click="remove(item.id)">
                             <v-icon color="red darken-4">mdi-trash-can-outline</v-icon>
@@ -15,8 +15,10 @@
                             <!-- Field for view -->
                             <v-list-item-title v-if="!item.isEditing" v-text="item.title"></v-list-item-title>
                             <!-- Text Field for editing -->
-                            <v-text-field v-else hide-details="auto" placeholder="Enter Here..." autofocus
-                                v-on:keyup.enter="editItem(item)" v-model="item.title"></v-text-field>
+                            <v-text-field v-else hide-details="auto" placeholder="Enter Here..." autofocus counter="60"
+                                v-on:keyup.enter="editItem(item)" v-model="item.title" :rules="lengthRule"></v-text-field>
+                            <!-- Name of the author -->
+                            <v-list-item-subtitle v-text="'Author: ' + item.author"></v-list-item-subtitle>
                         </v-list-item-content>
                         <!-- Button to Edit -->
                         <v-btn small v-if="!item.active" v-on:click="editItem(item)" class="mr-2" icon>
@@ -40,7 +42,7 @@
                         </v-btn>
                     </v-list-item>
                 </v-hover>
-                <v-divider v-if="index < totalItem - 1" :key="'divider' + index"></v-divider>
+                <v-divider v-if="index < getItems.length - 1" :key="'divider' + index"></v-divider>
             </template>
         </v-list>
         <!-- If list is empty -->
@@ -49,10 +51,17 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     name: 'TodoItem',
     data () {
         return {
+            lengthRule: [
+                v => v.length <= 60 || 'Can not be lengthier than 60 chars',
+                v => !!v || 'It is required',
+
+            ]
         }
     },
     props: {
@@ -62,24 +71,25 @@ export default {
         // }
     },
     methods: {
+        ...mapActions(['rmvItem', 'markItem', 'markEditing', 'archiveItem']),
         remove: function (id) {
-            this.$store.commit('rmvItem', id)
+            this.rmvItem(id)
         },
         markComp: function (item) {
-            this.$store.commit('markItem', item)
+            this.markItem(item)
         },
         editItem: function (item) {
-            this.$store.commit('markEditing', item)
+            if (this.lengthRule[0](item.title) === true
+                && this.lengthRule[1](item.title) === true) {
+                this.markEditing(item)
+            }
         },
         archiveItem: function (item) {
-            this.$store.commit('archiveItem', item)
+            this.archiveItem(item)
         }
 
     },
     computed: {
-        totalItem () {
-            return this.$store.getters.totalItems;
-        },
         getItems () {
             return this.$store.getters.items;
         },

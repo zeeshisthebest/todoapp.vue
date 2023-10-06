@@ -11,18 +11,16 @@
                         <v-list-item-content class="pl-2">
                             <!-- Field for view -->
                             <v-list-item-title v-text="item.title"></v-list-item-title>
-
                         </v-list-item-content>
-
+                        <!-- Unarchive Button -->
                         <v-btn v-on:click="unarchiveItem(item)" class="mr-2" icon>
                             <v-icon color="grey darken-4 ">
                                 mdi-archive-arrow-up
                             </v-icon>
                         </v-btn>
-
                     </v-list-item>
                 </v-hover>
-                <v-divider v-if="index < totalItem - 1" :key="'divider' + index"></v-divider>
+                <v-divider v-if="index < getItems.lenght - 1" :key="'divider' + index"></v-divider>
             </template>
         </v-list>
         <!-- If list is empty -->
