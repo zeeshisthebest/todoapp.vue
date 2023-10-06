@@ -1,13 +1,13 @@
 <template>
     <v-card class="px-3 py-5 my-3 elevation-5">
         <v-card-subtitle>Total Tasks: {{ totalItem }}</v-card-subtitle>
-        <v-list v-if="totalItem !== 0" two-line color="grey lighten-4" class="py-0">
+        <v-list v-if="totalItem !== 0" two-line class="py-0">
             <!-- Each Item -->
             <template v-for="(item, index) in getItems">
                 <v-hover :key="index">
-                    <v-list-item>
+                    <v-list-item :class="[item.active ? 'light-green lighten-2' : 'grey lighten-4']">
                         <!-- Delete Button -->
-                        <v-btn class="mr-2 elevation-1" small color="grey lighten-4" v-on:click="remove(item.id)">
+                        <v-btn class="mr-2 elevation-1" small v-on:click="remove(item.id)">
                             <v-icon color="red darken-4">mdi-trash-can-outline</v-icon>
                         </v-btn>
                         <!-- Tile Content -->
