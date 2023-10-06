@@ -1,0 +1,48 @@
+Project:
+     Create a to-do application (ex: shopping list) called "TO-DO APP" using vuejs
+
+     Prerequisite:
+         Use the Vuetify graphics framework. Reference documentation at the following link:
+https://vuetifyjs.com/en/getting-started/installation/
+
+     Part 1:
+         Give the user the possibility to insert a task (in the form of a text string) and, via a button or the enter key, insert this task into a list;
+         the list must have the possibility of:
+             - rename the previously inserted task												# Progress
+             - delete the previously entered task 												# completed
+             - confirm that you have performed the previously entered task						# completed
+             - cancel the confirmation of having performed the previously entered task			# completed
+
+     Part 2:
+         Add the ability to "archive" confirmed tasks
+         View a list of all archived tasks on a "COMPLETED" page (use vue-router to manage page routes)
+
+     Part 3:
+         Create a fake login page by entering only the person's name (use vue-router to manage page routes)
+         Use this username to identify any tasks entered by this person
+         Make the name of the person who inserted the task visible in the main list and in the list of the "COMPLETED" page
+    
+     Part 4:
+         On the "COMPLETED" page by selecting a name (you can use a select that includes all the names of the people who created the tasks for example) filter the completed tasks for the selected name
+
+     Part 5:
+            On the "COMPLETED" page, by filling in a text field, filter the tasks by the text entered (the filter must act on both the name of the person and the name of the task)
+
+     Part 6:
+The XKCD site collects the humorous strips of the former American physicist Randall Munroe. This site displays a service which, upon request, provides data on the various cartoons created by Munroe over time. In this part of the exercise you are asked to use API calls (made using the Axios library) to show information coming from this site. The following address shows the URLs to which to send the request, with a brief explanation:
+
+        https://xkcd.com/json.html
+
+        Using the Axios library (to install and use it in a Vue 2 project refer to https://medium.com/spemer/using-axios-in-vue-js-17f186756a8b),
+             add to the project itself a page entitled "Register" which shows the detail of panel 100. The page must contain:
+- Day of the sticker ("day" field of the JSON returned in the service response),
+- Month of the sticker ("month" field of the JSON returned in the service response),
+- Year ("year" field of the JSON returned in the service response),
+- Number ("num" field of the JSON returned in the service response).
+             - Title of the cartoon ("safe_title" field of the JSON returned in the service response),
+- image link ("img" field of the JSON return in the service response),
+- two arrows with which it is possible to receive the data of the next or previous number compared to the currently selected strip.
+
+         Axios documentation link (for Vue 2 projects):
+
+         https://v2.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html?redirect=true

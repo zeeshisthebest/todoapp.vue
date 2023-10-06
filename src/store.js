@@ -24,6 +24,14 @@ export default new Vuex.Store({
         markEditing (state, item) {
             const index = state.items.indexOf(item)
             state.items[index].isEditing = !state.items[index].isEditing
+        },
+        archiveItem (state, item) {
+            const index = state.items.indexOf(item)
+            state.items[index].isarchived = true;
+        },
+        unarchiveItem (state, item) {
+            const index = state.items.indexOf(item)
+            state.items[index].isarchived = false;
         }
     },
 
@@ -31,6 +39,7 @@ export default new Vuex.Store({
     },
     getters: {
         totalItems: state => state.items.length,
-        items: state => state.items
+        items: state => state.items.filter(e => e.isarchived != true),
+        archivedItems: state => state.items.filter(e => e.isarchived == true)
     },
 });

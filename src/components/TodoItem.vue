@@ -5,7 +5,7 @@
             <!-- Each Item -->
             <template v-for="(item, index) in getItems">
                 <v-hover :key="index">
-                    <v-list-item :class="[item.active ? 'light-green lighten-2' : 'grey lighten-4']">
+                    <v-list-item :class="[item.active ? 'light-green lighten-2' : 'blue lighten-5']">
                         <!-- Delete Button -->
                         <v-btn class="mr-2 elevation-1" small v-on:click="remove(item.id)">
                             <v-icon color="red darken-4">mdi-trash-can-outline</v-icon>
@@ -15,13 +15,18 @@
                             <!-- Field for view -->
                             <v-list-item-title v-if="!item.isEditing" v-text="item.title"></v-list-item-title>
                             <!-- Text Field for editing -->
-                            <v-text-field v-else hide-details="auto" placeholder="Enter Here..."
-                                v-model="item.title"></v-text-field>
+                            <v-text-field v-else hide-details="auto" placeholder="Enter Here..." autofocus
+                                v-on:keyup.enter="editItem(item)" v-model="item.title"></v-text-field>
                         </v-list-item-content>
                         <!-- Button to Edit -->
-                        <v-btn small v-on:click="editItem(item)" class="mr-2" icon>
+                        <v-btn small v-if="!item.active" v-on:click="editItem(item)" class="mr-2" icon>
                             <v-icon color="grey">
                                 mdi-pencil-outline
+                            </v-icon>
+                        </v-btn>
+                        <v-btn v-else v-on:click="archiveItem(item)" class="mr-2" icon>
+                            <v-icon color="grey darken-4 ">
+                                mdi-archive-arrow-down
                             </v-icon>
                         </v-btn>
                         <!-- Button to mark completed -->
@@ -65,6 +70,9 @@ export default {
         },
         editItem: function (item) {
             this.$store.commit('markEditing', item)
+        },
+        archiveItem: function (item) {
+            this.$store.commit('archiveItem', item)
         }
 
     },
@@ -75,6 +83,7 @@ export default {
         getItems () {
             return this.$store.getters.items;
         },
+
 
     }
 }
