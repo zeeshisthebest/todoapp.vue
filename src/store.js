@@ -11,14 +11,19 @@ export default new Vuex.Store({
     mutations: {
         addItem (state, item) {
             item.id = state.items.length
+            console.log(item.id);
             state.items.push(item)
         },
         rmvItem (state, id) {
             state.items = state.items.filter(each => each.id !== id)
         },
-        markItem (state, id) {
-            const index = state.items.indexOf(state.items.find(e => e.id == id))
+        markItem (state, item) {
+            const index = state.items.indexOf(item)
             state.items[index].active = !state.items[index].active
+        },
+        markEditing (state, item) {
+            const index = state.items.indexOf(item)
+            state.items[index].isEditing = !state.items[index].isEditing
         }
     },
 

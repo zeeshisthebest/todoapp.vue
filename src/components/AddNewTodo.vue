@@ -3,7 +3,7 @@
         <v-card-title>Add New Task</v-card-title>
         <v-card-text class="py-0">
             <v-text-field placeholder="What to do..." prepend-icon="mdi mdi-format-list-text" outlined clearable
-                counter="60" color="indigo darken-4" v-model="newTaskText" v-on:keyup.enter="addTask">
+                counter="60" color="indigo darken-4" v-model="newTaskText" :rules="lengthRule" v-on:keyup.enter="addTask">
             </v-text-field>
         </v-card-text>
         <v-card-actions class="py-0">
@@ -20,16 +20,26 @@ export default {
     },
 
     data: () => ({
-        newTaskText: ""
+        newTaskText: "",
+        lengthRule: [
+            v => v.length <= 60 || 'Can not be lengthier than 60 chars',
+            v => !!v || 'It is required',
+
+        ]
     }),
     methods: {
-        addTask: function () {
+        addTask: async function () {
+            if (this.newTaskText.length > 60 || this.newTaskText.length === 0) return
+            //Storing via vuex
             this.$store.commit('addItem', {
                 title: this.newTaskText,
-                active: false
+                active: false,
+                isEditing: false
             });
-            this.newTaskText = "";
-        }
+            this.newTaskText = ""; //Resseting the field
+
+        },
     }
 };
+
 </script>

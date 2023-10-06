@@ -1,6 +1,6 @@
 <template>
     <v-main>
-        <NavBar title="WELCOME: Manage Tasks"></NavBar>
+        <NavBar title="HOME"></NavBar>
         <AddNewTodo />
         <h2 class="text-center text-grey">TODO's List</h2>
         <TodoItem />
