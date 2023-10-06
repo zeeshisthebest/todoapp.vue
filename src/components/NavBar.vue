@@ -10,6 +10,7 @@
             <v-tab exact to="/">Home</v-tab>
             <v-tab exact to="/archives">Completed</v-tab>
             <v-tab exact to="/login">Login</v-tab>
+            <v-tab exact to="/register">Register</v-tab>
             <v-spacer />
         </v-tabs>
 

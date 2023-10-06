@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './plugins/axios'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import 'vuetify/dist/vuetify.min.css'

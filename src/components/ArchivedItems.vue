@@ -75,7 +75,7 @@ export default {
             if (this.isFiltered) {
                 return this.$store.getters.archivedItems.filter(e => e.author === this.name)
             } else if (this.searchText != "") {
-                return this.$store.getters.archivedItems.filter(e => e.title.includes(this.searchText) || e.author.includes(this.searchText))
+                return this.$store.getters.archivedItems.filter(e => e.title.toLowerCase().includes(this.searchText.toLowerCase()) || e.author.toLowerCase().includes(this.searchText.toLowerCase()))
             } else {
                 return this.$store.getters.archivedItems
             }

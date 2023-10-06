@@ -36,13 +36,13 @@ The XKCD site collects the humorous strips of the former American physicist Rand
 
         Using the Axios library (to install and use it in a Vue 2 project refer to https://medium.com/spemer/using-axios-in-vue-js-17f186756a8b),
              add to the project itself a page entitled "Register" which shows the detail of panel 100. The page must contain:
-- Day of the sticker ("day" field of the JSON returned in the service response),
-- Month of the sticker ("month" field of the JSON returned in the service response),
-- Year ("year" field of the JSON returned in the service response),
-- Number ("num" field of the JSON returned in the service response).
-             - Title of the cartoon ("safe_title" field of the JSON returned in the service response),
-- image link ("img" field of the JSON return in the service response),
-- two arrows with which it is possible to receive the data of the next or previous number compared to the currently selected strip.
+        - Day of the sticker ("day" field of the JSON returned in the service response),
+        - Month of the sticker ("month" field of the JSON returned in the service response),
+        - Year ("year" field of the JSON returned in the service response),
+        - Number ("num" field of the JSON returned in the service response).
+        - Title of the cartoon ("safe_title" field of the JSON returned in the service response),
+        - image link ("img" field of the JSON return in the service response),
+        - two arrows with which it is possible to receive the data of the next or previous number compared to the currently selected strip.
 
          Axios documentation link (for Vue 2 projects):
 
