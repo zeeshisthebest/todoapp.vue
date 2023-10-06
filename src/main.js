@@ -8,8 +8,8 @@ import vuetify from './plugins/vuetify'
 import Routes from './router'
 import store from './store'
 
-
 Vue.use(VueRouter)
+
 Vue.config.productionTip = false
 
 // Router management
