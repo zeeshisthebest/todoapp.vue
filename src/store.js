@@ -34,6 +34,9 @@ export default new Vuex.Store({
             const index = state.items.indexOf(item)
             state.items[index].isarchived = false;
         },
+        itemForUsername (state, user) {
+            state.items.filter(e => e.username === user)
+        },
         login (state, username) {
             state.username = username
         },

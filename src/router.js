@@ -18,5 +18,5 @@ export default [
         path: '/login',
         name: 'LoginView',
         component: LoginView
-    }
+    },
 ]

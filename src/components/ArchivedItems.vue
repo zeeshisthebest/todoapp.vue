@@ -1,5 +1,13 @@
 <template>
     <v-card class="px-3 py-5 my-3 elevation-5">
+        <!-- Search bar -->
+        <v-card-title>
+            <v-spacer></v-spacer>
+            <v-col cols="5"><v-text-field outlined dense prepend-icon="mdi-magnify" placeholder="search..." width="100px"
+                    v-model="searchText">
+                </v-text-field>
+            </v-col>
+        </v-card-title>
         <v-card-subtitle>Total Archvied Tasks: {{ getItems.length }}</v-card-subtitle>
         <v-list v-if="getItems.lenght !== 0" two-line class="py-0">
             <!-- Each Item -->
@@ -11,6 +19,8 @@
                         <v-list-item-content class="pl-2">
                             <!-- Field for view -->
                             <v-list-item-title v-text="item.title"></v-list-item-title>
+                            <a><v-list-item-subtitle text v-text="'Author: ' + item.author"
+                                    v-on:click="forUsername(item.author)"></v-list-item-subtitle></a>
                         </v-list-item-content>
                         <!-- Unarchive Button -->
                         <v-btn v-on:click="unarchiveItem(item)" class="mr-2" icon>
@@ -33,6 +43,9 @@ export default {
     name: 'ArchivedItems',
     data () {
         return {
+            isFiltered: false,
+            name: "",
+            searchText: ""
         }
     },
     props: {
@@ -44,13 +57,29 @@ export default {
     methods: {
         unarchiveItem (item) {
             this.$store.commit('unarchiveItem', item)
+        },
+        forUsername (user) {
+            console.log(user);
+            if (!this.isFiltered) {
+                this.name = user
+                this.isFiltered = true
+            } else {
+                this.isFiltered = false
+                this.name = ""
+            }
         }
 
     },
     computed: {
         getItems () {
-            return this.$store.getters.archivedItems;
-        },
+            if (this.isFiltered) {
+                return this.$store.getters.archivedItems.filter(e => e.author === this.name)
+            } else if (this.searchText != "") {
+                return this.$store.getters.archivedItems.filter(e => e.title.includes(this.searchText) || e.author.includes(this.searchText))
+            } else {
+                return this.$store.getters.archivedItems
+            }
+        }
 
 
     }

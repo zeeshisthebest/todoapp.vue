@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 
 export default {
     name: 'TodoItem',
@@ -71,21 +70,20 @@ export default {
         // }
     },
     methods: {
-        ...mapActions(['rmvItem', 'markItem', 'markEditing', 'archiveItem']),
         remove: function (id) {
-            this.rmvItem(id)
+            this.$store.commit('rmvItem', id)
         },
         markComp: function (item) {
-            this.markItem(item)
+            this.$store.commit('markItem', item)
         },
         editItem: function (item) {
             if (this.lengthRule[0](item.title) === true
                 && this.lengthRule[1](item.title) === true) {
-                this.markEditing(item)
+                this.$store.commit('markEditing', item)
             }
         },
         archiveItem: function (item) {
-            this.archiveItem(item)
+            this.$store.commit('archiveItem', item)
         }
 
     },

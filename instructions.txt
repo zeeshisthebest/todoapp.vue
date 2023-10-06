@@ -18,11 +18,12 @@ https://vuetifyjs.com/en/getting-started/installation/
          View a list of all archived tasks on a "COMPLETED" page                                # Completed
 
      Part 3:
-         Create a fake login page by entering only the person's name (use vue-router to manage page routes)
-         Use this username to identify any tasks entered by this person
-         Make the name of the person who inserted the task visible in the main list and in the list of the "COMPLETED" page
+         Create a fake login page by entering only the person's names                           # Completed
+         Use this username to identify any tasks entered by this person                         # Completed
+         Make the name of the person who inserted the task visible in The                       # Completed
+            main list and in the list of the "COMPLETED" page.
 
-     Part 4:
+     Part 4: done
          On the "COMPLETED" page by selecting a name (you can use a select that includes all the names of the people who created the tasks for example) filter the completed tasks for the selected name
 
      Part 5:
