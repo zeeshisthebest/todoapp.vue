@@ -1,24 +1,14 @@
-# hello-world
+# TodoApp
 
-## Project setup
-```
-npm install
-```
+This is the first app made by me when i started to learn Vue.js using vuetify for UI compononets, Axios for http requests, Vuex for state management.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+It provides ability to add new tasks, mark, delete and archive them.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+It also provides a simple login to associate Task with a user. Multiple users can add tasks.
 
-### Lints and fixes files
-```
-npm run lint
-```
+The App consists of 3 tabs:
+1st Tab - To add notes
+2nd Tab - To login/logout
+3rd Tab - random Comic strip loading from an API
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
